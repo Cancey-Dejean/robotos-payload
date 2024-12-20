@@ -1,101 +1,122 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-*: initial;
+  --color-*: initial;
+  --text-*: initial;
+  --container-*: initial;
+
+  --color-transparent: transparent;
+
+  --font-space-mono: 'Space Mono', monospace;
+  --font-right-grotesk: 'Right Grotesk', sans-serif;
+
+  /**
+    * @tokens Color
+    * @presenter Color
+  */
+  --color-white: #ffffff;
+  --color-black: #0a0a0a;
+  --color-gray-100: #f3f2ed;
+  --color-gray-900: #1f2024;
+  --color-pink-100: #ff55a2;
+  --color-pink-200: #ff3979;
+  --color-pink-300: #ff2cb2;
+  --color-pink-400: #ff00a1;
+  --color-red: #eb0d18;
+  --color-blue-50: #cae9fa;
+  --color-blue-100: #5879ff;
+  --color-blue-200: #5100ff;
+  --color-blue-300: #163892;
+  --color-yellow-100: #eedf39;
+  --color-yellow-200: #f9e174;
+  --color-purple-100: #a774f9;
+  --color-purple-100: #672fcf;
+  --color-purple-100: #461a97;
+  --color-mint: #ace5d7;
+  --color-magenta: #e42c7f;
+
+  /**
+  * @tokens-end
+  */
+
+  --text-display-2xl: clamp(3.75rem, 3.536rem + 1.07vw, 4.5rem); /* 60px - 72px */
+
+  --text-display-xl: clamp(3rem, 2.786rem + 1.07vw, 3.75rem); /* 48px - 60px */
+
+  --text-display-lg: clamp(2.25rem, 2.036rem + 1.07vw, 3rem); /* 36px - 48px */
+
+  --text-display-md: clamp(1.75rem, 1.607rem + 0.71vw, 2.25rem); /* 28px - 36px */
+
+  --text-display-sm: clamp(1.5rem, 1.393rem + 0.54vw, 1.875rem); /* 24px - 30px */
+
+  --text-display-xs: clamp(1.25rem, 1.179rem + 0.36vw, 1.5rem); /* 20px - 24px */
+
+  --text-lg: 1.125rem; /* 18px */
+  --text-base: 1rem; /* 16px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-xs: 0.75rem; /* 12px */
+}
 
 @layer base {
+  html {
+    @apply scroll-pt-12 scroll-smooth lg:scroll-pt-11;
+  }
+
+  body {
+    @apply font-space-mono antialiased;
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-size: auto;
-    font-weight: auto;
+    @apply font-right-grotesk;
   }
 
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 240 5% 96%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 240 6% 90%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.2rem;
-
-    --success: 196 52% 74%;
-    --warning: 34 89% 85%;
-    --error: 10 100% 86%;
-  }
-
-  [data-theme='dark'] {
-    --background: 0 0% 0%;
-    --foreground: 210 40% 98%;
-
-    --card: 0 0% 4%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 0, 0%, 15%, 0.5;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-
-    --success: 196 100% 14%;
-    --warning: 34 51% 25%;
-    --error: 10 39% 43%;
+  a {
+    @apply inline-block;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer utilities {
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
   }
-  body {
-    @apply bg-background text-foreground min-h-[100vh] flex flex-col;
+
+  .prose {
+    @apply text-inherit;
+    strong {
+      @apply text-current;
+    }
   }
 }
 
-html {
-  opacity: 0;
+/* Storybook Styles ONLY: DO NOT DELETE */
+
+.sbdocs-content {
+  @apply mx-auto !max-w-[1920px];
 }
+
+/* Token Card Styles */
+.css-11igmw9 {
+  @apply relative !gap-10;
+}
+.css-1lkb4bw {
+  @apply relative !overflow-visible !p-0 !shadow-none hover:!bg-transparent;
+}
+
+.css-1lkb4bw {
+  @apply text-right;
+  .css-1y5ujk1 {
+    @apply hidden;
+  }
+}
+
+/* End Storybook Styles */
 
 html[data-theme='dark'],
 html[data-theme='light'] {

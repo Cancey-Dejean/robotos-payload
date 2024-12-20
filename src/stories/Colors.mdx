@@ -1,0 +1,14 @@
+import { DesignTokenDocBlock } from "storybook-design-token";
+import { Meta } from "@storybook/blocks";
+import { ColorPresenter } from "./presenters/ColorPresenter";
+
+<Meta title="Tokens/Color" />
+
+# Colors
+
+<DesignTokenDocBlock
+  categoryName="Color"
+  viewType="card"
+  presenters={{ Color: ColorPresenter }}
+  showValueColumn={false}
+/>

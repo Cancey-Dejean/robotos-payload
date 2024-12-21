@@ -139,6 +139,7 @@ export interface Page {
     | ImageStackBlock
     | StatsBlock
     | LatestPostsBlock
+    | FaqBlock
   )[];
   meta?: {
     title?: string | null;
@@ -782,10 +783,23 @@ export interface LatestPostsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock".
+ */
+export interface FaqBlock {
+  headline?: string | null;
+  headlineElement?: ('h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6') | null;
+  questions?: (number | Faq)[] | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faqs".
  */
 export interface Faq {
   id: number;
+  image?: (number | null) | Media;
   title: string;
   content: {
     root: {
@@ -1005,6 +1019,7 @@ export interface PagesSelect<T extends boolean = true> {
         imageStack?: T | ImageStackBlockSelect<T>;
         stats?: T | StatsBlockSelect<T>;
         latestPosts?: T | LatestPostsBlockSelect<T>;
+        faq?: T | FaqBlockSelect<T>;
       };
   meta?:
     | T
@@ -1195,6 +1210,17 @@ export interface LatestPostsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FaqBlock_select".
+ */
+export interface FaqBlockSelect<T extends boolean = true> {
+  headline?: T;
+  headlineElement?: T;
+  questions?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1356,6 +1382,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "faqs_select".
  */
 export interface FaqsSelect<T extends boolean = true> {
+  image?: T;
   title?: T;
   content?: T;
   updatedAt?: T;

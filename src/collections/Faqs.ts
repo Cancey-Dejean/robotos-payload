@@ -7,8 +7,6 @@ import {
   HorizontalRuleFeature,
   InlineToolbarFeature,
   lexicalEditor,
-  OrderedListFeature,
-  UnorderedListFeature,
 } from '@payloadcms/richtext-lexical'
 
 import { Banner } from '../blocks/Banner/config'
@@ -30,6 +28,11 @@ export const Faqs: CollectionConfig = {
     useAsTitle: 'title',
   },
   fields: [
+    {
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+    },
     {
       name: 'title',
       type: 'text',

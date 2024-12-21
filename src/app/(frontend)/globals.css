@@ -4,14 +4,10 @@
 @theme {
   --font-*: initial;
   --color-*: initial;
-  /* --text-*: initial; */
   --container-*: initial;
-
   --color-transparent: transparent;
-
   --font-space-mono: 'Space Mono', monospace;
   --font-right-grotesk: 'Right Grotesk', sans-serif;
-
   --breakpoint-3xl: 104rem;
 
   /**
@@ -85,7 +81,9 @@
   .prose {
     @apply text-inherit max-w-full;
     strong,
-    a {
+    a,
+    ol li::marker,
+    ul li::marker {
       @apply text-current;
     }
   }
@@ -130,8 +128,3 @@
 }
 
 /* End Storybook Styles */
-
-html[data-theme='dark'],
-html[data-theme='light'] {
-  opacity: initial;
-}

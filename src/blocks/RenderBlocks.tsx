@@ -11,6 +11,7 @@ import GetRobots from '@/blocks/GetRobots'
 import ImageStack from '@/blocks/ImageStack'
 import Stats from '@/blocks/Stats'
 import LatestPosts from '@/blocks/LatestPosts'
+import Faq from '@/blocks/Faq'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -22,6 +23,7 @@ const blockComponents = {
   imageStack: ImageStack,
   stats: Stats,
   latestPosts: LatestPosts,
+  faq: Faq,
 }
 
 export const RenderBlocks: React.FC<{

@@ -23,7 +23,6 @@ export default function CardBlog({
         <div className="relative h-[300px] w-full overflow-hidden rounded-[20px] lg:h-[200px]">
           <Media
             imgClassName="object-cover object-center"
-            priority
             resource={heroImage}
             alt={heroImage.alt || 'Image'}
           />

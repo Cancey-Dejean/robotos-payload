@@ -24,12 +24,7 @@ export default function GetRobots(props) {
           {/* Image */}
           <div className="relative mx-auto -mt-[80px] mb-8 size-28 overflow-hidden rounded-full border-[5px] border-gray-900 md:size-[190px]">
             {topImage && typeof topImage === 'object' && (
-              <Media
-                imgClassName="scale-[1.1]"
-                priority
-                resource={topImage}
-                alt={topImage.alt || 'Image'}
-              />
+              <Media imgClassName="scale-[1.1]" resource={topImage} alt={topImage.alt || 'Image'} />
             )}
           </div>
 

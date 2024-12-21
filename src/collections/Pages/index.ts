@@ -24,6 +24,7 @@ import { GetRobots } from '@/blocks/GetRobots/config'
 import { ImageStack } from '@/blocks/ImageStack/config'
 import { Stats } from '@/blocks/Stats/config'
 import { LatestPosts } from '@/blocks/LatestPosts/config'
+import { Faq } from '@/blocks/Faq/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -89,6 +90,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ImageStack,
                 Stats,
                 LatestPosts,
+                Faq,
               ],
               required: true,
               admin: {

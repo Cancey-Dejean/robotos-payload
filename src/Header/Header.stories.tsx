@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import HeaderClient from './Component.client'
 
 const meta = {
-  title: 'Components/Header',
+  title: 'Marketing/Header',
   component: HeaderClient,
   parameters: {
     layout: 'fullscreen',
@@ -14,48 +14,46 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const menu = [
-  {
-    label: 'Home',
-    url: '/',
-    cta: false,
-    newTab: false,
+const data = {
+  id: 1,
+  navItems: [
+    {
+      id: '1',
+      link: {
+        label: 'Home',
+        url: '/',
+        newTab: false,
+      },
+    },
+    {
+      id: '2',
+      link: {
+        label: 'Rarity',
+        url: '/',
+        newTab: false,
+      },
+    },
+    {
+      id: '3',
+      link: {
+        label: 'Blog',
+        url: '/',
+        newTab: false,
+      },
+    },
+  ],
+  cta: {
+    link: {
+      id: '1',
+      label: 'Call to Action',
+      url: '/',
+      newTab: false,
+    },
   },
-  {
-    label: 'Your Stuff',
-    url: '/',
-    cta: false,
-    newTab: false,
-  },
-  {
-    label: 'Rarity',
-    url: '/',
-    cta: false,
-    newTab: false,
-  },
-  {
-    label: 'Blog',
-    url: '/',
-    cta: false,
-    newTab: false,
-  },
-  {
-    label: 'Faq',
-    url: '/',
-    cta: false,
-    newTab: false,
-  },
-  {
-    label: 'Connect',
-    url: '/',
-    cta: true,
-    newTab: false,
-  },
-]
+}
 
 export const Default: Story = {
   args: {
-    logo: '/images/logo-icon.png',
-    menu: menu,
+    data: data,
   },
 }

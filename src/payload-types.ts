@@ -85,23 +85,9 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
-    richText?: {
-      root: {
-        type: string;
-        children: {
-          type: string;
-          version: number;
-          [k: string]: unknown;
-        }[];
-        direction: ('ltr' | 'rtl') | null;
-        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-        indent: number;
-        version: number;
-      };
-      [k: string]: unknown;
-    } | null;
-    links?:
+    type: 'none' | 'heroHome' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    headline?: string | null;
+    buttons?:
       | {
           link: {
             type?: ('reference' | 'custom') | null;
@@ -117,14 +103,40 @@ export interface Page {
                 } | null);
             url?: string | null;
             label: string;
-            appearance?: ('default' | 'outline') | null;
           };
+          variant?: ('default' | 'mint' | 'purple') | null;
+          size?: 'default' | null;
           id?: string | null;
         }[]
       | null;
+    availability?: boolean | null;
+    richText?: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
     media?: (number | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | GetRobotsBlock
+    | ImageStackBlock
+    | StatsBlock
+  )[];
   meta?: {
     title?: string | null;
     image?: (number | null) | Media;
@@ -638,6 +650,105 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GetRobotsBlock".
+ */
+export interface GetRobotsBlock {
+  bgImg?: (number | null) | Media;
+  topImage: number | Media;
+  headline?: string | null;
+  headlineElement?: ('h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6') | null;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  cta: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+    variant?: ('default' | 'mint' | 'purple') | null;
+    size?: 'default' | null;
+  };
+  availability?: boolean | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'getRobots';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageStackBlock".
+ */
+export interface ImageStackBlock {
+  title: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'imageStack';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock".
+ */
+export interface StatsBlock {
+  bgImg?: (number | null) | Media;
+  headline?: string | null;
+  headlineElement?: ('h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6') | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  statGroup?:
+    | {
+        title?: string | null;
+        list?:
+          | {
+              label?: string | null;
+              value?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        image?: (number | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'stats';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -799,8 +910,8 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         type?: T;
-        richText?: T;
-        links?:
+        headline?: T;
+        buttons?:
           | T
           | {
               link?:
@@ -811,10 +922,13 @@ export interface PagesSelect<T extends boolean = true> {
                     reference?: T;
                     url?: T;
                     label?: T;
-                    appearance?: T;
                   };
+              variant?: T;
+              size?: T;
               id?: T;
             };
+        availability?: T;
+        richText?: T;
         media?: T;
       };
   layout?:
@@ -825,6 +939,9 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        getRobots?: T | GetRobotsBlockSelect<T>;
+        imageStack?: T | ImageStackBlockSelect<T>;
+        stats?: T | StatsBlockSelect<T>;
       };
   meta?:
     | T
@@ -921,6 +1038,70 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GetRobotsBlock_select".
+ */
+export interface GetRobotsBlockSelect<T extends boolean = true> {
+  bgImg?: T;
+  topImage?: T;
+  headline?: T;
+  headlineElement?: T;
+  content?: T;
+  cta?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        variant?: T;
+        size?: T;
+      };
+  availability?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImageStackBlock_select".
+ */
+export interface ImageStackBlockSelect<T extends boolean = true> {
+  title?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "StatsBlock_select".
+ */
+export interface StatsBlockSelect<T extends boolean = true> {
+  bgImg?: T;
+  headline?: T;
+  headlineElement?: T;
+  content?: T;
+  statGroup?:
+    | T
+    | {
+        title?: T;
+        list?:
+          | T
+          | {
+              label?: T;
+              value?: T;
+              id?: T;
+            };
+        image?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 
 export function ColorPresenter({ token }) {
-  console.log(token)
   return (
     <div className="overflow-hidden rounded-2xl border border-black/40 shadow-lg">
       <div

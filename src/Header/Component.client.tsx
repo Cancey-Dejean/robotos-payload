@@ -16,7 +16,6 @@ import { cn } from '@/utilities/cn'
 import Container from '@/components/ui/container'
 import Link from 'next/link'
 import { CMSLink } from '@/components/Link'
-import { Button } from '@/components/ui/button'
 
 interface HeaderClientProps {
   data: Header
@@ -79,12 +78,19 @@ export default function HeaderClient({ data }: HeaderClientProps) {
         >
           {data?.navItems?.map(({ link }, i) => (
             <li key={i} className="w-full">
-              <CMSLink
+              <Link
+                href={link?.url || '#'}
+                className={cn(NavlinkStyles, 'w-full text-3xl')}
+                onClick={handleMobileMenu}
+              >
+                {link?.label}
+              </Link>
+              {/* <CMSLink
                 {...link}
                 appearance="link"
                 className={cn(NavlinkStyles, 'w-full text-3xl')}
                 handleMobileMenu={handleMobileMenu}
-              />
+              /> */}
               {/* <NavLink
                     newTab={newTab}
                     url={url}
@@ -96,15 +102,13 @@ export default function HeaderClient({ data }: HeaderClientProps) {
             </li>
           ))}
           <li>
-            <Button asChild>
-              <Link
-                href={data?.cta?.link?.url || '#'}
-                target={data?.cta?.link?.newTab ? '_blank' : '_self'}
-                className="mt-4 bg-mint px-4 py-4 text-center text-gray-900 hover:bg-magenta hover:text-white sm:mt-0 sm:py-2 no-underline"
-              >
-                {data?.cta?.link?.label}
-              </Link>
-            </Button>
+            <Link
+              href={data?.cta?.link?.url || '#'}
+              target={data?.cta?.link?.newTab ? '_blank' : '_self'}
+              className="mt-4 bg-mint px-4 py-4 text-center text-gray-900 hover:bg-magenta hover:text-white sm:mt-0 sm:py-2 no-underline"
+            >
+              {data?.cta?.link?.label}
+            </Link>
           </li>
         </ul>
 

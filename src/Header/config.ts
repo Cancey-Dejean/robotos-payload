@@ -2,7 +2,6 @@ import type { GlobalConfig } from 'payload'
 
 import { link } from '@/fields/link'
 import { revalidateHeader } from './hooks/revalidateHeader'
-import { buttonField } from '@/fields/buttonField'
 
 export const Header: GlobalConfig = {
   slug: 'header',
@@ -29,6 +28,7 @@ export const Header: GlobalConfig = {
     {
       name: 'cta',
       type: 'group',
+      label: 'Call to Action',
       fields: [
         link({
           appearances: false,

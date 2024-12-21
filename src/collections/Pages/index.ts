@@ -20,6 +20,9 @@ import {
   OverviewField,
   PreviewField,
 } from '@payloadcms/plugin-seo/fields'
+import { GetRobots } from '@/blocks/GetRobots/config'
+import { ImageStack } from '@/blocks/ImageStack/config'
+import { Stats } from '@/blocks/Stats/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -75,7 +78,16 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                GetRobots,
+                ImageStack,
+                Stats,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

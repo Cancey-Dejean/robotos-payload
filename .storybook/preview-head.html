@@ -2,32 +2,42 @@
 <!-- Example: `main.js|ts` is configured with staticDirs: ['../public'] and your font is located in the `fonts` directory inside your `public` directory -->
 
 
-<link rel="preload" href="/fonts/SpaceMono-Regular.woff2" as="font" />
-<link rel="preload" href="/fonts/SpaceMono-Bold.woff2" as="font" />
-<link rel="preload" href="/fonts/RightGrotesk-SpatialBlack.woff2" as="font" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
   @font-face {
-    font-family: 'Space Mono', monospace;
-    src: url("/fonts/SpaceMono-Regular.woff2") format("woff2");
+    font-family: "Space Mono", serif;
+    src: url("./fonts/SpaceMono-Regular.woff2") format("woff2");
     font-weight: 400;
+    font-style: normal;
   }
 
   @font-face {
-    font-family: "Space Mono";
-    src: url("/fonts/SpaceMono-Bold.woff2") format("woff2");
+    font-family: "Space Mono", serif;
+    src: url("./fonts/SpaceMono-Bold.woff2") format("woff2");
     font-weight: 700;
+    font-style: normal;
   }
 
   @font-face {
     font-family: "Right Grotesk";
-    src: url("/fonts/RightGrotesk-SpatialBlack.woff2") format("woff2");
+    src: url("./fonts/RightGrotesk-SpatialBlack.woff2") format("woff2");
     font-weight: 900;
+    font-style: normal;
   }
 
   body {
-    max-width: 1920px !important;
-    margin: 0 auto !important;
+    font-family: "Space Mono", monospace !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: "Right Grotesk", sans-serif !important;
   }
 </style>

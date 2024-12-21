@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import React, { useCallback, useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import RichText from '@/components/RichText'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/Button'
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 
 import { buildInitialFormState } from './buildInitialFormState'
@@ -161,7 +161,7 @@ export const FormBlock: React.FC<
                   })}
               </div>
 
-              <Button form={formID} type="submit" variant="default">
+              <Button form={formID} type="submit">
                 {submitButtonLabel}
               </Button>
             </form>

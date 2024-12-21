@@ -1,6 +1,6 @@
-import type { ButtonProps } from '@/components/ui/button'
+import type { ButtonProps } from '@/components/Button'
 
-import { buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@/components/Button'
 import { cn } from 'src/utilities/cn'
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react'
 import * as React from 'react'
@@ -38,7 +38,7 @@ const PaginationLink = ({ className, isActive, size = 'icon', ...props }: Pagina
     className={cn(
       buttonVariants({
         size,
-        variant: isActive ? 'outline' : 'ghost',
+        variant: isActive ? 'mint' : 'default',
       }),
       className,
     )}

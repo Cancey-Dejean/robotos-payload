@@ -140,6 +140,7 @@ export interface Page {
     | StatsBlock
     | LatestPostsBlock
     | FaqBlock
+    | NewsletterBlock
   )[];
   meta?: {
     title?: string | null;
@@ -821,6 +822,32 @@ export interface Faq {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsletterBlock".
+ */
+export interface NewsletterBlock {
+  headline: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  btnLabel?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'newsletter';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1020,6 +1047,7 @@ export interface PagesSelect<T extends boolean = true> {
         stats?: T | StatsBlockSelect<T>;
         latestPosts?: T | LatestPostsBlockSelect<T>;
         faq?: T | FaqBlockSelect<T>;
+        newsletter?: T | NewsletterBlockSelect<T>;
       };
   meta?:
     | T
@@ -1216,6 +1244,17 @@ export interface FaqBlockSelect<T extends boolean = true> {
   headline?: T;
   headlineElement?: T;
   questions?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NewsletterBlock_select".
+ */
+export interface NewsletterBlockSelect<T extends boolean = true> {
+  headline?: T;
+  content?: T;
+  btnLabel?: T;
   id?: T;
   blockName?: T;
 }

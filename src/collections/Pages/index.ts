@@ -25,6 +25,7 @@ import { ImageStack } from '@/blocks/ImageStack/config'
 import { Stats } from '@/blocks/Stats/config'
 import { LatestPosts } from '@/blocks/LatestPosts/config'
 import { Faq } from '@/blocks/Faq/config'
+import { Newsletter } from '@/blocks/Newsletter/config'
 
 export const Pages: CollectionConfig<'pages'> = {
   slug: 'pages',
@@ -91,6 +92,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 Stats,
                 LatestPosts,
                 Faq,
+                Newsletter,
               ],
               required: true,
               admin: {

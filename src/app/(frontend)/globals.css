@@ -4,11 +4,13 @@
 @theme {
   --font-*: initial;
   --color-*: initial;
-  --container-*: initial;
-  --color-transparent: transparent;
+
   --font-space-mono: 'Space Mono', monospace;
   --font-right-grotesk: 'Right Grotesk', sans-serif;
+
   --breakpoint-3xl: 104rem;
+
+  --color-transparent: transparent;
 
   /**
     * @tokens Color

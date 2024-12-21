@@ -12,6 +12,7 @@ import ImageStack from '@/blocks/ImageStack'
 import Stats from '@/blocks/Stats'
 import LatestPosts from '@/blocks/LatestPosts'
 import Faq from '@/blocks/Faq'
+import Newsletter from './Newsletter'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -24,6 +25,7 @@ const blockComponents = {
   stats: Stats,
   latestPosts: LatestPosts,
   faq: Faq,
+  newsletter: Newsletter,
 }
 
 export const RenderBlocks: React.FC<{

@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation'
 import './index.scss'
 
 import { getClientSideURL } from '@/utilities/getURL'
+import Container from '../ui/container'
 
 const baseClass = 'admin-bar'
 
@@ -51,7 +52,7 @@ export const AdminBar: React.FC<{
         hidden: !show,
       })}
     >
-      <div className="container">
+      <Container>
         <PayloadAdminBar
           {...adminBarProps}
           className="py-2 text-white"
@@ -81,7 +82,7 @@ export const AdminBar: React.FC<{
             zIndex: 'unset',
           }}
         />
-      </div>
+      </Container>
     </div>
   )
 }

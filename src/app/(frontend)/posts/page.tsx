@@ -7,6 +7,7 @@ import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 import React from 'react'
 import PageClient from './page.client'
+import Container from '@/components/ui/container'
 
 export const dynamic = 'force-static'
 export const revalidate = 600
@@ -28,30 +29,30 @@ export default async function Page() {
   })
 
   return (
-    <div className="pt-24 pb-24">
+    <div className="py-24">
       <PageClient />
-      <div className="container mb-16">
+      <Container className="mb-16">
         <div className="prose dark:prose-invert max-w-none">
-          <h1>Posts</h1>
+          <h1 className="text-black">Posts</h1>
         </div>
-      </div>
+      </Container>
 
-      <div className="container mb-8">
+      <Container className="mb-8">
         <PageRange
           collection="posts"
           currentPage={posts.page}
           limit={12}
           totalDocs={posts.totalDocs}
         />
-      </div>
+      </Container>
 
       <CollectionArchive posts={posts.docs} />
 
-      <div className="container">
+      <Container>
         {posts.totalPages > 1 && posts.page && (
           <Pagination page={posts.page} totalPages={posts.totalPages} />
         )}
-      </div>
+      </Container>
     </div>
   )
 }

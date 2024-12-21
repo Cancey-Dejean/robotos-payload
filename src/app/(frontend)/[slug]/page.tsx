@@ -63,7 +63,7 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const { hero, layout } = page
 
-  console.log(layout[2])
+  console.log(layout[3])
 
   return (
     <>

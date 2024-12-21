@@ -5,11 +5,12 @@ import type { Page } from '@/payload-types'
 import { CMSLink } from '@/components/Link'
 import { Media } from '@/components/Media'
 import RichText from '@/components/RichText'
+import Container from '@/components/ui/container'
 
 export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richText }) => {
   return (
     <div className="">
-      <div className="container mb-8">
+      <Container className="mb-8">
         {richText && <RichText className="mb-6" data={richText} enableGutter={false} />}
 
         {Array.isArray(links) && links.length > 0 && (
@@ -23,8 +24,9 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
             })}
           </ul>
         )}
-      </div>
-      <div className="container ">
+      </Container>
+
+      <Container>
         {media && typeof media === 'object' && (
           <div>
             <Media
@@ -40,7 +42,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
             )}
           </div>
         )}
-      </div>
+      </Container>
     </div>
   )
 }

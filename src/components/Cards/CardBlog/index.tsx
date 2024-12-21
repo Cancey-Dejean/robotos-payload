@@ -1,67 +1,50 @@
-// import React from "react";
-// import Card from "@/components/ui/Cards/Card";
+import Link from 'next/link'
 
-// import Link from "next/link";
-// import { PostProps } from "@/types";
-// import Image from "next/image";
+import { cn } from '@/utilities/cn'
+import { Post } from '@/payload-types'
+import Card from '../Card'
+import { Media } from '@/components/Media'
+import Image from 'next/image'
 
-// export default function CardBlog({
-//   className,
-//   title,
-//   slug,
-//   buttonLabel,
-//   featuredImg,
-//   seo,
-//   ...props
-// }: {
-//   className?: string;
-//   buttonLabel?: string;
-// } & PostProps) {
-//   return (
-//     <Card
-//       className={cn(
-//         "relative flex flex-col items-start gap-5 p-4 md:p-5",
-//         className,
-//       )}
-//       {...props}
-//     >
-//       {featuredImg && (
-//         <div className="relative h-[300px] w-full overflow-hidden rounded-[20px] lg:h-[200px]">
-//           <Image
-//             src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${featuredImg.filename_disk}?key=optimized`}
-//             alt={featuredImg.title || ""}
-//             className="object-cover object-center"
-//             fill
-//           />
-//         </div>
-//       )}
+export default function CardBlog({
+  className,
+  buttonLabel,
+  post,
+}: {
+  className?: string
+  buttonLabel?: string
+  post: Post
+}) {
+  const { title, slug, heroImage, meta } = post
 
-//       <div className="flex flex-col gap-2">
-//         {title && <h3 className="text-2xl">{title}</h3>}
+  return (
+    <Card className={cn('relative flex flex-col items-start gap-5 p-4 md:p-5', className)}>
+      {heroImage && typeof heroImage === 'object' && (
+        <div className="relative h-[300px] w-full overflow-hidden rounded-[20px] lg:h-[200px]">
+          <Media
+            imgClassName="object-cover object-center"
+            priority
+            resource={heroImage}
+            alt={heroImage.alt || 'Image'}
+          />
+        </div>
+      )}
 
-//         {seo?.meta_description && (
-//           <div className="line-clamp-2">{seo?.meta_description}</div>
-//         )}
-//       </div>
+      <div className="flex flex-col gap-2">
+        <h3 className="text-xl">{title}</h3>
 
-//       <div className="mt-auto flex w-full items-center justify-between gap-2">
-//         <Link href={`/blog/${slug}`} className="after:absolute after:inset-0">
-//           {buttonLabel || "Read More"} →
-//         </Link>
+        {meta?.description && <div className="line-clamp-2">{meta.description}</div>}
+      </div>
 
-//         {/* {author?.authorImage && (
-//           <Image
-//             src={
-//               author?.authorImage ||
-//               "https://dummyimage.com/200x200.png/eb0d18/ffffff"
-//             }
-//             width={50}
-//             height={50}
-//             alt={author?.authorImageAlt || "Author"}
-//             className="scale-[1.1] rounded-full border border-black object-cover"
-//           />
-//         )} */}
-//       </div>
-//     </Card>
-//   );
-// }
+      <div className="mt-auto flex w-full items-center justify-between gap-2">
+        <Link href={`/posts/${slug}`} className="after:absolute after:inset-0">
+          {buttonLabel || 'Read More'} →
+        </Link>
+
+        <div className="relative size-12 overflow-hidden rounded-full border border-black">
+          <Image src="/images/headshot.jpeg" fill alt={'Author'} className="object-cover" />
+        </div>
+      </div>
+    </Card>
+  )
+}

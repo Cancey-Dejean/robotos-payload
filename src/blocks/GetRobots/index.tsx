@@ -28,7 +28,7 @@ export default function GetRobots(props) {
                 imgClassName="scale-[1.1]"
                 priority
                 resource={topImage}
-                alt={topImage.title || 'Image'}
+                alt={topImage.alt || 'Image'}
               />
             )}
           </div>

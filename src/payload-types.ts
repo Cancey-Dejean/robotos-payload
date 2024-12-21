@@ -16,6 +16,7 @@ export interface Config {
     media: Media;
     categories: Category;
     users: User;
+    faqs: Faq;
     redirects: Redirect;
     forms: Form;
     'form-submissions': FormSubmission;
@@ -31,6 +32,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
+    faqs: FaqsSelect<false> | FaqsSelect<true>;
     redirects: RedirectsSelect<false> | RedirectsSelect<true>;
     forms: FormsSelect<false> | FormsSelect<true>;
     'form-submissions': FormSubmissionsSelect<false> | FormSubmissionsSelect<true>;
@@ -136,6 +138,7 @@ export interface Page {
     | GetRobotsBlock
     | ImageStackBlock
     | StatsBlock
+    | LatestPostsBlock
   )[];
   meta?: {
     title?: string | null;
@@ -749,6 +752,61 @@ export interface StatsBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LatestPostsBlock".
+ */
+export interface LatestPostsBlock {
+  title: string;
+  buttonLabel?: string | null;
+  cta: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+    };
+    variant?: ('default' | 'mint' | 'purple') | null;
+    size?: 'default' | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'latestPosts';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs".
+ */
+export interface Faq {
+  id: number;
+  title: string;
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -841,6 +899,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'users';
         value: number | User;
+      } | null)
+    | ({
+        relationTo: 'faqs';
+        value: number | Faq;
       } | null)
     | ({
         relationTo: 'redirects';
@@ -942,6 +1004,7 @@ export interface PagesSelect<T extends boolean = true> {
         getRobots?: T | GetRobotsBlockSelect<T>;
         imageStack?: T | ImageStackBlockSelect<T>;
         stats?: T | StatsBlockSelect<T>;
+        latestPosts?: T | LatestPostsBlockSelect<T>;
       };
   meta?:
     | T
@@ -1107,6 +1170,31 @@ export interface StatsBlockSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LatestPostsBlock_select".
+ */
+export interface LatestPostsBlockSelect<T extends boolean = true> {
+  title?: T;
+  buttonLabel?: T;
+  cta?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+            };
+        variant?: T;
+        size?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
@@ -1262,6 +1350,16 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "faqs_select".
+ */
+export interface FaqsSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

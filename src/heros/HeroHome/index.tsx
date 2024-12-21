@@ -4,10 +4,11 @@ import { useScroll, useTransform } from 'motion/react'
 import Image from 'next/image'
 import { motion } from 'motion/react'
 import { cn } from '@/utilities/cn'
-import { Link } from 'lucide-react'
+
 import { Button } from '@/components/Button'
 import Availability from '@/components/Availability'
 import { robots } from '@/utilities/animations'
+import Link from 'next/link'
 
 export default function HeroHome({ availability, headline, buttons }: Page['hero']) {
   console.log(buttons)
@@ -60,7 +61,7 @@ export default function HeroHome({ availability, headline, buttons }: Page['hero
         <div className="flex items-center gap-4">
           {buttons?.map(({ link, size, variant }, index) => (
             <Button key={index} asChild variant={variant} size={size}>
-              <a href={link.url || '#'}>{link.label}</a>
+              <Link href={link.url || '#'}>{link.label}</Link>
             </Button>
           ))}
         </div>

@@ -83,7 +83,7 @@
   }
 
   .prose {
-    @apply text-inherit;
+    @apply text-inherit max-w-full;
     strong,
     a {
       @apply text-current;

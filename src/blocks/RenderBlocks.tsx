@@ -10,6 +10,7 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import GetRobots from '@/blocks/GetRobots'
 import ImageStack from '@/blocks/ImageStack'
 import Stats from '@/blocks/Stats'
+import LatestPosts from '@/blocks/LatestPosts'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -20,6 +21,7 @@ const blockComponents = {
   getRobots: GetRobots,
   imageStack: ImageStack,
   stats: Stats,
+  latestPosts: LatestPosts,
 }
 
 export const RenderBlocks: React.FC<{

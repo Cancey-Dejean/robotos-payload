@@ -3,10 +3,9 @@ import SectionTitle from '@/components/SectionTitle'
 import RichText from '@/components/RichText'
 import { Media } from '@/components/Media'
 import Card from '@/components/Cards/Card'
-import Image from 'next/image'
 
 export default function Stats(props) {
-  const { headline, bgImg, content, image, headlineElement, statGroup } = props
+  const { headline, bgImg, content, headlineElement, statGroup } = props
   return (
     <section
       className="border-[16px] border-gray-900 bg-blue-300 bg-cover bg-fixed bg-center py-0 md:py-32"
@@ -32,10 +31,6 @@ export default function Stats(props) {
                     {list?.map(({ label, value }, index) => (
                       <Statbar key={index} label={label} value={value} />
                     ))}
-
-                    {/* {image && (
-
-                    )} */}
 
                     {image && (
                       <div className="hidden h-full items-center justify-center md:flex">
